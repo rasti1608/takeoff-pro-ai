@@ -7,7 +7,7 @@
 **Project #:** 25-668  
 **Drawing Date:** October 22, 2025 (100% Construction Set)  
 **Takeoff Date:** December 6, 2025  
-**Prepared By:** TakeOff Pro AI
+**Prepared By:** TakeoffReader.ai
 
 ---
 
@@ -595,4 +595,4 @@ Primary view: Entry, vestibule, lobby, conference room
 
 ---
 
-*This takeoff is provided for estimating purposes. All quantities should be verified against final construction documents before ordering materials. TakeOff Pro AI is not responsible for discrepancies between this estimate and actual field conditions.*
+*This takeoff is provided for estimating purposes. All quantities should be verified against final construction documents before ordering materials. TakeoffReader.ai is not responsible for discrepancies between this estimate and actual field conditions.*
