@@ -4,7 +4,7 @@
 
 **Architect:** James Schettino Architects (JOB# 2507)  
 **Drawings Date:** July 1, 2025 (Design Development)  
-**Takeoff Date:** December 9, 2025  
+**Takeoff Date:** December 16, 2025  
 **Scope:** Entire proposed building (existing + additions treated as new)
 
 ---
@@ -13,9 +13,9 @@
 
 | Material | Net SF | Waste | Order SF | Order Units |
 |----------|--------|-------|----------|-------------|
-| **Cedar Roofing Shingles** | 4,140 | 12% | 4,637 | **47 squares** |
-| **Stone Veneer** | 844 | 10% | 928 | **928 SF** |
-| **Cedar Wall Shingles** | 3,060 | 10% | 3,366 | **34 squares** |
+| **Cedar Roofing Shingles** | 3,636 | 12% | 4,072 | **41 squares** |
+| **Stone Veneer** | 880 | 10% | 968 | **968 SF** |
+| **Cedar Wall Shingles** | 2,971 | 10% | 3,268 | **33 squares** |
 
 *1 square = 100 SF*
 
@@ -25,11 +25,11 @@
 
 | Item | Quantity | Unit | Notes |
 |------|----------|------|-------|
-| Copper Gutters (6" half-round) | 260 | LF | Full perimeter |
+| Copper Gutters (6" half-round) | 267 | LF | Full perimeter |
 | Copper Downspouts | TBD | EA | Per drainage plan |
-| Ice & Water Shield | 830 | SF | Eaves + valleys (est. 20% of roof) |
+| Ice & Water Shield | 727 | SF | Eaves + valleys (est. 20% of roof) |
 | Copper Valley Flashing | 80 | LF | Estimate - verify from roof plan |
-| Starter Strip (roof) | 260 | LF | Full eave perimeter |
+| Starter Strip (roof) | 267 | LF | Full eave perimeter |
 | Ridge Cap | 120 | LF | Estimate - verify from roof plan |
 
 ---
@@ -73,10 +73,10 @@
 
 | Section | Plan Area | + Overhang | Pitch | Multiplier | Actual SF |
 |---------|-----------|------------|-------|------------|-----------|
-| Main House | 2,300 SF | +270 SF | 9:12 | 1.250 | 3,213 SF |
-| Garage | 700 SF | +120 SF | 6:12 | 1.118 | 927 SF |
-| **NET TOTAL** | | | | | **4,140 SF** |
-| **+ 12% WASTE** | | | | | **4,637 SF** |
+| Main House | 1,993 SF | +293 SF | 9:12 | 1.250 | 2,857 SF |
+| Garage | 593 SF | +113 SF | 6:12 | 1.118 | 789 SF |
+| **NET TOTAL** | | | | | **3,636 SF** |
+| **+ 12% WASTE** | | | | | **4,072 SF** |
 
 **Material:** P.T. Western Red Cedar Tapersawn Roofing Shingles (per Sheet A6.1)
 
@@ -84,10 +84,10 @@
 
 | Item | Calculation | SF |
 |------|-------------|-----|
-| Gross Area | 260 LF perimeter × 4' height | 1,040 SF |
-| Door Deductions | D1-D7 (bottom 4' of each) | -196 SF |
-| **NET TOTAL** | | **844 SF** |
-| **+ 10% WASTE** | | **928 SF** |
+| Gross Area | 270 LF perimeter × 4' height | 1,080 SF |
+| Door Deductions | D1-D7 (bottom 4' of each) | -200 SF |
+| **NET TOTAL** | | **880 SF** |
+| **+ 10% WASTE** | | **968 SF** |
 
 **Material:** Stone veneer (type not specified - verify with owner)
 
@@ -95,15 +95,15 @@
 
 | Item | Calculation | SF |
 |------|-------------|-----|
-| Main House Walls | 180 LF × 14' height | 2,520 SF |
-| Garage Walls | 80 LF × 6' height | 480 SF |
-| Main House Gables | 2 gables × 192 SF | 384 SF |
-| Garage Gables | 2 gables × 60.5 SF | 121 SF |
-| **GROSS TOTAL** | | **3,505 SF** |
+| Main House Walls | 195 LF × 14' height | 2,730 SF |
+| Garage Walls | 75 LF × 6' height | 450 SF |
+| Main House Gables | 4 gables (75 + 12 + 37 + 54 SF) | 178 SF |
+| Garage Gable | 1 gable × 61 SF | 61 SF |
+| **GROSS TOTAL** | | **3,418 SF** |
 | Window Deductions | W1-W12 | -290 SF |
-| Door Deductions | D1-D7 (above 4' stone) | -155 SF |
-| **NET TOTAL** | | **3,060 SF** |
-| **+ 10% WASTE** | | **3,366 SF** |
+| Door Deductions | D1-D7 (above 4' stone) | -157 SF |
+| **NET TOTAL** | | **2,971 SF** |
+| **+ 10% WASTE** | | **3,268 SF** |
 
 **Material:** Cedar wall shingles (assumed to match roof specification)
 
@@ -122,18 +122,21 @@
 | Roofing material | P.T. Western Red Cedar Tapersawn | Sheet A6.1 |
 | Gutters | 6" half-round copper | Sheet A6.1 |
 | Flashing | Copper at valleys | Sheet A6.1 |
+| Main roof plan area | 1,993 SF | FAR.1 |
+| Garage roof plan area | 593 SF | FAR.1 |
 
 ### Estimated (Not Dimensioned on DD Drawings)
 | Dimension | Estimated Value | Notes |
 |-----------|-----------------|-------|
-| Total building perimeter | 260 LF (180 main + 80 garage) | From floor plan |
+| Total building perimeter | 267 LF (195 main + 75 garage) | From floor plan |
 | Main house wall height | 18'-0" (grade to soffit) | From sections |
 | Garage wall height | 10'-0" (grade to eave) | From sections |
-| Main roof plan area | 2,300 SF | From roof plan |
-| Garage roof plan area | 700 SF | From roof plan |
 | Roof overhang | 1'-6" | Typical - not dimensioned |
-| Main gable base width | 32' (qty 2) | From elevations |
-| Garage gable base width | 22' (qty 2) | From elevations |
+| Gable 1 (Front) | 20' base at 9:12 | From elevations |
+| Gable 2 (Dormer) | 8' base at 9:12 | From elevations |
+| Gable 3 (Study) | 14' base at 9:12 | From elevations |
+| Gable 4 (Rear) | 17' base at 9:12 | From elevations |
+| Gable 5 (Garage) | 22' base at 6:12 | From elevations |
 
 **These estimates should be verified against Construction Documents when available.**
 
@@ -150,11 +153,10 @@
 
 ### General Notes
 1. All quantities include waste factors for ordering purposes
-2. Net quantities (before waste) verified across 4 independent calculations with <1% variance
-3. Design Development drawings - some dimensions estimated from proportions
-4. Stone veneer type not specified - verify selection with owner/architect
-5. Exterior trim (Boral/Azek) quantities not included - requires detail takeoff
-6. Soffit and fascia quantities not included - requires detail drawings
+2. Design Development drawings - some dimensions estimated from proportions
+3. Stone veneer type not specified - verify selection with owner/architect
+4. Exterior trim (Boral/Azek) quantities not included - requires detail takeoff
+5. Soffit and fascia quantities not included - requires detail drawings
 
 ---
 
@@ -162,11 +164,11 @@
 
 | Material | Order Quantity |
 |----------|----------------|
-| Cedar Roofing Shingles | **47 squares** |
-| Stone Veneer | **928 SF** |
-| Cedar Wall Shingles | **34 squares** |
-| Copper Gutters (6" half-round) | **260 LF** |
-| Ice & Water Shield | **830 SF** |
+| Cedar Roofing Shingles | **41 squares** |
+| Stone Veneer | **968 SF** |
+| Cedar Wall Shingles | **33 squares** |
+| Copper Gutters (6" half-round) | **267 LF** |
+| Ice & Water Shield | **727 SF** |
 | Copper Valley Flashing | **80 LF** |
 
 ---
@@ -175,7 +177,7 @@
 
 | Sheet | Content |
 |-------|---------|
-| A1.1 | Preliminary Site Plan |
+| FAR.1 | Floor Area Calculations |
 | A2.2 | First Floor Plan |
 | A3.1 | Roof Plan |
 | A4.1 | Door & Window Schedules |
@@ -186,5 +188,4 @@
 ---
 
 *Report prepared using TakeoffReader AI  
-Universal Exterior Takeoff methodology  
-Net quantities verified across multiple independent calculations with <1% variance*
+December 16, 2025*
