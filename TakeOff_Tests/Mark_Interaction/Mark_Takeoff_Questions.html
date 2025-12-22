@@ -139,13 +139,16 @@
         .modal.active { display: flex; }
         .modal-content {
             position: relative;
-            max-width: 95%;
-            max-height: 95%;
+            width: 98vw;
+            height: 96vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             overflow: hidden;
         }
         .modal-image {
-            max-width: 100%;
-            max-height: 85vh;
+            max-width: 98vw;
+            max-height: 96vh;
             object-fit: contain;
             cursor: grab;
             transition: transform 0.1s;
@@ -159,7 +162,7 @@
             z-index: 1001;
         }
         .modal-btn {
-            background: #fff;
+            background: rgba(255,255,255,0.95);
             border: none;
             width: 50px;
             height: 50px;
@@ -169,7 +172,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5), 0 0 0 3px rgba(0,0,0,0.3);
         }
         .modal-btn:hover { background: #f0f0f0; }
         .modal-close {
@@ -182,23 +185,25 @@
         .modal-close:hover { background: #c0392b; }
         .modal-title {
             position: fixed;
-            bottom: 20px;
+            bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(255,255,255,0.9);
-            padding: 10px 30px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 8px 20px;
             border-radius: 5px;
             font-weight: bold;
-            font-size: 18px;
+            font-size: 14px;
         }
         .zoom-info {
             position: fixed;
-            bottom: 20px;
+            bottom: 10px;
             right: 20px;
-            background: rgba(255,255,255,0.9);
-            padding: 8px 15px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 6px 12px;
             border-radius: 5px;
-            font-size: 14px;
+            font-size: 12px;
         }
     </style>
 </head>
@@ -217,11 +222,11 @@
     <span class="drawing-link" onclick="openModal('page_03_A-2.png', 'Sheet A-2: First Floor Plan')">A-2</span>
     <span class="drawing-link" onclick="openModal('page_04_A-3.png', 'Sheet A-3: Second Floor / Half Story Plans')">A-3</span>
     <span class="drawing-link" onclick="openModal('page_05_A-4.png', 'Sheet A-4: Roof Plan')">A-4</span>
-    <span class="drawing-link" onclick="openModal('page_06_A-6.png', 'Sheet A-6: South & East Elevations')">A-6</span>
-    <span class="drawing-link" onclick="openModal('page_07_A-7.png', 'Sheet A-7: North & West Elevations')">A-7</span>
-    <span class="drawing-link" onclick="openModal('page_08_A-8.png', 'Sheet A-8: Sections A & B')">A-8</span>
-    <span class="drawing-link" onclick="openModal('page_09_A-9.png', 'Sheet A-9: Sections C & D')">A-9</span>
-    <span class="drawing-link" onclick="openModal('page_10_A-10.png', 'Sheet A-10: Section E')">A-10</span>
+    <span class="drawing-link" onclick="openModal('page_07_A-6.png', 'Sheet A-6: South & East Elevations')">A-6</span>
+    <span class="drawing-link" onclick="openModal('page_08_A-7.png', 'Sheet A-7: North & West Elevations')">A-7</span>
+    <span class="drawing-link" onclick="openModal('page_09_A-8.png', 'Sheet A-8: Sections A & B')">A-8</span>
+    <span class="drawing-link" onclick="openModal('page_10_A-9.png', 'Sheet A-9: Sections C & D')">A-9</span>
+    <span class="drawing-link" onclick="openModal('page_11_A-10.png', 'Sheet A-10: Section E')">A-10</span>
 </div>
 
 <div class="locked-values">
@@ -272,7 +277,7 @@
     <div class="question-card">
         <h3>Question 2: Wall Height (Grade to Main Soffit)</h3>
         <p>From Section E (Sheet A-10), measuring from proposed grade to the main soffit/eave line.</p>
-        <p><span class="drawing-link" onclick="openModal('page_10_A-10.png', 'Sheet A-10: Section E')">📄 View Sheet A-10</span></p>
+        <p><span class="drawing-link" onclick="openModal('page_11_A-10.png', 'Sheet A-10: Section E')">📄 View Sheet A-10</span></p>
         <div class="proposed">
             <strong>Proposed:</strong> 24'-0"
         </div>
@@ -299,7 +304,7 @@
         <p>Roof overhang is NOT dimensioned on drawings. Standard assumption applied.</p>
         <p>
             <span class="drawing-link" onclick="openModal('page_05_A-4.png', 'Sheet A-4: Roof Plan')">📄 View A-4</span>
-            <span class="drawing-link" onclick="openModal('page_06_A-6.png', 'Sheet A-6: Elevations')">📄 View A-6</span>
+            <span class="drawing-link" onclick="openModal('page_07_A-6.png', 'Sheet A-6: Elevations')">📄 View A-6</span>
         </p>
         <div class="proposed">
             <strong>Proposed:</strong> 1'-6" (assumed)
@@ -325,7 +330,7 @@
     <div class="question-card">
         <h3>Question 4: Window Count - South (Front) Elevation</h3>
         <p>Count includes all floors. Entry sidelites/transom counted as part of door unit.</p>
-        <p><span class="drawing-link" onclick="openModal('page_06_A-6.png', 'Sheet A-6: South & East Elevations')">📄 View Sheet A-6</span></p>
+        <p><span class="drawing-link" onclick="openModal('page_07_A-6.png', 'Sheet A-6: South & East Elevations')">📄 View Sheet A-6</span></p>
         <div class="proposed">
             <strong>Proposed:</strong> 10 windows
         </div>
@@ -350,7 +355,7 @@
     <div class="question-card">
         <h3>Question 5: Window Count - North (Rear) Elevation</h3>
         <p>Count includes basement gliders and all upper floors.</p>
-        <p><span class="drawing-link" onclick="openModal('page_07_A-7.png', 'Sheet A-7: North & West Elevations')">📄 View Sheet A-7</span></p>
+        <p><span class="drawing-link" onclick="openModal('page_08_A-7.png', 'Sheet A-7: North & West Elevations')">📄 View Sheet A-7</span></p>
         <div class="proposed">
             <strong>Proposed:</strong> 12 windows
         </div>
@@ -375,7 +380,7 @@
     <div class="question-card">
         <h3>Question 6: Window Count - East (Side) Elevation</h3>
         <p>Count includes basement glider and stair tower windows.</p>
-        <p><span class="drawing-link" onclick="openModal('page_06_A-6.png', 'Sheet A-6: South & East Elevations')">📄 View Sheet A-6</span></p>
+        <p><span class="drawing-link" onclick="openModal('page_07_A-6.png', 'Sheet A-6: South & East Elevations')">📄 View Sheet A-6</span></p>
         <div class="proposed">
             <strong>Proposed:</strong> 12 windows
         </div>
@@ -400,7 +405,7 @@
     <div class="question-card">
         <h3>Question 7: Window Count - West (Side) Elevation</h3>
         <p>Count includes basement glider.</p>
-        <p><span class="drawing-link" onclick="openModal('page_07_A-7.png', 'Sheet A-7: North & West Elevations')">📄 View Sheet A-7</span></p>
+        <p><span class="drawing-link" onclick="openModal('page_08_A-7.png', 'Sheet A-7: North & West Elevations')">📄 View Sheet A-7</span></p>
         <div class="proposed">
             <strong>Proposed:</strong> 11 windows
         </div>
@@ -432,8 +437,8 @@
             <li>Second Floor Balcony Door - West</li>
         </ol>
         <p>
-            <span class="drawing-link" onclick="openModal('page_06_A-6.png', 'Sheet A-6')">📄 A-6</span>
-            <span class="drawing-link" onclick="openModal('page_07_A-7.png', 'Sheet A-7')">📄 A-7</span>
+            <span class="drawing-link" onclick="openModal('page_07_A-6.png', 'Sheet A-6')">📄 A-6</span>
+            <span class="drawing-link" onclick="openModal('page_08_A-7.png', 'Sheet A-7')">📄 A-7</span>
         </p>
         <div class="proposed">
             <strong>Proposed:</strong> 4 doors
@@ -460,8 +465,8 @@
         <h3>Question 9: Stone Veneer Height from Grade</h3>
         <p>Stone veneer appears on exposed foundation/basement walls from grade to approximately the first floor line.</p>
         <p>
-            <span class="drawing-link" onclick="openModal('page_06_A-6.png', 'Sheet A-6')">📄 A-6</span>
-            <span class="drawing-link" onclick="openModal('page_07_A-7.png', 'Sheet A-7')">📄 A-7</span>
+            <span class="drawing-link" onclick="openModal('page_07_A-6.png', 'Sheet A-6')">📄 A-6</span>
+            <span class="drawing-link" onclick="openModal('page_08_A-7.png', 'Sheet A-7')">📄 A-7</span>
         </p>
         <div class="proposed">
             <strong>Proposed:</strong> 5'-0" (grade to first floor line)
@@ -488,8 +493,8 @@
         <h3>Question 10: Stone Veneer - Which Elevations?</h3>
         <p>Which sides of the building have stone veneer on the foundation zone?</p>
         <p>
-            <span class="drawing-link" onclick="openModal('page_06_A-6.png', 'Sheet A-6')">📄 A-6</span>
-            <span class="drawing-link" onclick="openModal('page_07_A-7.png', 'Sheet A-7')">📄 A-7</span>
+            <span class="drawing-link" onclick="openModal('page_07_A-6.png', 'Sheet A-6')">📄 A-6</span>
+            <span class="drawing-link" onclick="openModal('page_08_A-7.png', 'Sheet A-7')">📄 A-7</span>
         </p>
         <div class="proposed">
             <strong>Proposed:</strong> All four elevations (Front, Rear, East, West)
@@ -516,8 +521,8 @@
         <h3>Question 11: Stucco Area</h3>
         <p>Is there a separate STUCCO zone on the foundation, or is it all stone veneer?</p>
         <p>
-            <span class="drawing-link" onclick="openModal('page_06_A-6.png', 'Sheet A-6')">📄 A-6</span>
-            <span class="drawing-link" onclick="openModal('page_07_A-7.png', 'Sheet A-7')">📄 A-7</span>
+            <span class="drawing-link" onclick="openModal('page_07_A-6.png', 'Sheet A-6')">📄 A-6</span>
+            <span class="drawing-link" onclick="openModal('page_08_A-7.png', 'Sheet A-7')">📄 A-7</span>
         </p>
         <div class="answer-section">
             <div class="radio-group">
@@ -613,6 +618,7 @@
             startX = e.clientX - translateX;
             startY = e.clientY - translateY;
             modalImage.style.cursor = 'grabbing';
+            e.preventDefault();
         }
     });
     
@@ -626,7 +632,18 @@
     
     document.addEventListener('mouseup', () => {
         isDragging = false;
-        modalImage.style.cursor = 'grab';
+        modalImage.style.cursor = currentZoom > 1 ? 'grab' : 'default';
+    });
+    
+    // Also stop dragging if mouse leaves the window
+    document.addEventListener('mouseleave', () => {
+        isDragging = false;
+        modalImage.style.cursor = currentZoom > 1 ? 'grab' : 'default';
+    });
+    
+    // Stop drag on modal close
+    document.getElementById('imageModal').addEventListener('click', () => {
+        isDragging = false;
     });
     
     // Keyboard shortcuts
