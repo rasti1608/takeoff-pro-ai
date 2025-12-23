@@ -19,6 +19,11 @@
             --roof: #943126;
         }
         
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 60px;
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -1403,37 +1408,7 @@
     </div>
 </div>
 
-<script>
-    // Smooth scrolling for navigation
-    document.querySelectorAll('.nav a').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-    });
-    
-    // Highlight current section in nav
-    window.addEventListener('scroll', () => {
-        const sections = document.querySelectorAll('section, .waste-config, .cost-section');
-        const navLinks = document.querySelectorAll('.nav a');
-        
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 100;
-            if (scrollY >= sectionTop) {
-                current = section.getAttribute('id');
-            }
-        });
-        
-        navLinks.forEach(link => {
-            link.style.background = '';
-            if (link.getAttribute('href') === '#' + current) {
-                link.style.background = 'var(--accent)';
-            }
-        });
-    });
-</script>
+<!-- No JavaScript needed - CSS handles smooth scrolling -->
 
 </body>
 </html>
