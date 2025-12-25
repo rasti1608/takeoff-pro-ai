@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEC-CATAQUET RESIDENCE - Takeoff Questions (Test_09)</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+            color: #333;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .project-info {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .question-card {
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid #3498db;
+        }
+        .question-card h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .proposed {
+            background: #e8f4f8;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border: 1px solid #bee5eb;
+        }
+        .drawing-link {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin: 5px 5px 5px 0;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .drawing-link:hover { background: #2980b9; }
+        .answer-section {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        .radio-group label {
+            display: block;
+            padding: 12px 15px;
+            margin: 5px 0;
+            background: #f8f9fa;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        .radio-group label:hover { background: #e9ecef; }
+        .radio-group label.selected {
+            border-color: #3498db;
+            background: #e8f4f8;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        input[type="text"]:focus, input[type="number"]:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        .correction-field {
+            display: none;
+            margin-top: 10px;
+        }
+        .correction-field.visible { display: block; }
+        .submit-section {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button[type="submit"] {
+            background: #27ae60;
+            color: white;
+            padding: 15px 50px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover { background: #219a52; }
+        .locked-values {
+            background: #d4edda;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border: 1px solid #c3e6cb;
+        }
+        .locked-values h3 { color: #155724; margin-top: 0; }
+        .locked-values ul { margin: 0; padding-left: 20px; }
+        .locked-values li { padding: 3px 0; }
+        .section-header {
+            background: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 30px 0 20px 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal.active { display: flex; }
+        .modal-content {
+            position: relative;
+            width: 98vw;
+            height: 96vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .modal-image {
+            max-width: 98vw;
+            max-height: 96vh;
+            object-fit: contain;
+            cursor: grab;
+            transition: transform 0.1s;
+            pointer-events: auto;
+            z-index: 1;
+        }
+        .modal-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 9999;
+        }
+        .modal-btn {
+            background: rgba(255,255,255,0.95);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5), 0 0 0 3px rgba(0,0,0,0.3);
+            pointer-events: auto;
+            position: relative;
+        }
+        .modal-btn:hover { background: #f0f0f0; }
+        .modal-close {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #e74c3c;
+            color: white;
+            z-index: 9999;
+        }
+        .modal-close:hover { background: #c0392b; }
+        .modal-title {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 14px;
+            pointer-events: none;
+            z-index: 1002;
+        }
+        .zoom-info {
+            position: fixed;
+            bottom: 10px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 1002;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        table th {
+            background: #f8f9fa;
+        }
+        table input {
+            width: 80px;
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🏠 DEC-CATAQUET RESIDENCE</h1>
+
+<div class="project-info">
+    <strong>Project:</strong> 502 Twelfth Avenue, Borough of Belmar, NJ<br>
+    <strong>Job #:</strong> 240307<br>
+    <strong>Date:</strong> December 24, 2024<br>
+    <strong>Test:</strong> Test_09
+</div>
+
+<div class="locked-values">
+    <h3>✓ Auto-Locked Values (No Input Required)</h3>
+    <p>These values were consistent across all 4 takeoff reports:</p>
+    <ul>
+        <li><strong>Building Footprint:</strong> 1,550 SF</li>
+        <li><strong>Front Porch Area:</strong> 122 SF</li>
+        <li><strong>Stone Veneer Height:</strong> 5'-0" from grade</li>
+        <li><strong>Main Roof Pitch:</strong> 9:12</li>
+        <li><strong>Secondary Pitch:</strong> 6:12</li>
+        <li><strong>Low Slope Pitch:</strong> 4:12</li>
+        <li><strong>Ridge Direction:</strong> North-South</li>
+        <li><strong>Garage Doors:</strong> 0 (separate structure)</li>
+    </ul>
+</div>
+
+<form action="#" method="post" onsubmit="alert('Answers submitted! Copy the form data for Addendum_B.'); return false;">
+
+    <!-- SECTION A: DIMENSIONS -->
+    <div class="section-header">📐 SECTION A: BUILDING DIMENSIONS</div>
+
+    <!-- Question A1 -->
+    <div class="question-card">
+        <h3>Question A1: Wall Height (Grade to Soffit)</h3>
+        <p>Reports showed different wall heights from grade to soffit line. Measuring from GRADE to the SOFFIT LINE at the main eave.</p>
+        <p>
+            <span class="drawing-link" onclick="openModal('page_09_A.png', 'Section A')">📄 Section A</span>
+            <span class="drawing-link" onclick="openModal('page_10_C_D.png', 'Sections C-D')">📄 Sections C-D</span>
+            <span class="drawing-link" onclick="openModal('page_11_E.png', 'Section E')">📄 Section E</span>
+        </p>
+        <div class="proposed">
+            <strong>Proposed:</strong> 23'-0" (Reports 2 & 3 agree; Report 1: 24'-0", Report 4: 27'-0")
+        </div>
+        <div class="answer-section">
+            <div class="radio-group">
+                <label onclick="this.classList.add('selected'); this.parentNode.querySelectorAll('label').forEach(l => l !== this && l.classList.remove('selected')); document.getElementById('qA1_correction').classList.remove('visible');">
+                    <input type="radio" name="A1_Wall_Height" value="CONFIRM: 23'-0&quot;" required>
+                    <span>✓ CONFIRM (23'-0")</span>
+                </label>
+                <label onclick="this.classList.add('selected'); this.parentNode.querySelectorAll('label').forEach(l => l !== this && l.classList.remove('selected')); document.getElementById('qA1_correction').classList.add('visible');">
+                    <input type="radio" name="A1_Wall_Height" value="CORRECT - see details">
+                    <span>✎ CORRECT (specify below)</span>
+                </label>
+            </div>
+            <div id="qA1_correction" class="correction-field">
+                <input type="text" name="A1_Correction" placeholder="Correct height: ___'-___&quot;">
+            </div>
+        </div>
+    </div>
+
+    <!-- Question A2 -->
+    <div class="question-card">
+        <h3>Question A2: Roof Overhang</h3>
+        <p>The roof overhang was NOT DIMENSIONED on the drawings. All 4 reports assumed 1'-6" (18 inches) as industry standard.</p>
+        <p>
+            <span class="drawing-link" onclick="openModal('page_05_5_OF_9.png', 'Sheet 5 - Roof Plan')">📄 Roof Plan</span>
+            <span class="drawing-link" onclick="openModal('page_07_7_OF_9.png', 'Sheet 7 - Elevations')">📄 Elevations S/E</span>
+            <span class="drawing-link" onclick="openModal('page_08_8_OF_9.png', 'Sheet 8 - Elevations')">📄 Elevations N/W</span>
+        </p>
+        <div class="proposed">
+            <strong>Proposed:</strong> 1'-6" (assumed - not dimensioned)
+        </div>
+        <div class="answer-section">
+            <div class="radio-group">
+                <label onclick="this.classList.add('selected'); this.parentNode.querySelectorAll('label').forEach(l => l !== this && l.classList.remove('selected')); document.getElementById('qA2_correction').classList.remove('visible');">
+                    <input type="radio" name="A2_Overhang" value="CONFIRM: 1'-6&quot;" required>
+                    <span>✓ CONFIRM (1'-6")</span>
+                </label>
+                <label onclick="this.classList.add('selected'); this.parentNode.querySelectorAll('label').forEach(l => l !== this && l.classList.remove('selected')); document.getElementById('qA2_correction').classList.add('visible');">
+                    <input type="radio" name="A2_Overhang" value="CORRECT - see details">
+                    <span>✎ CORRECT (specify below)</span>
+                </label>
+            </div>
+            <div id="qA2_correction" class="correction-field">
+                <input type="text" name="A2_Correction" placeholder="Correct overhang: ___'-___&quot;">
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION B: ROOFING -->
+    <div class="section-header">🏠 SECTION B: ROOFING MATERIALS</div>
+
+    <!-- Question B1 -->
+    <div class="question-card">
+        <h3>Question B1: Standing Seam Metal Roof Locations</h3>
+        <p>Reports disagreed on which roof areas receive standing seam metal (Englert Series 1300):</p>
+        <ul>
+            <li>Report 1: Front porch + bay roofs only (203 SF)</li>
+            <li>Report 2: Front porch + entry canopy + half story balcony (264 SF)</li>
+            <li>Report 3: Front porch + balcony + dormers (336 SF)</li>
+            <li>Report 4: Front porch + entry canopy only (202 SF)</li>
+        </ul>
+        <p>
+            <span class="drawing-link" onclick="openModal('page_05_5_OF_9.png', 'Sheet 5 - Roof Plan')">📄 Roof Plan</span>
+            <span class="drawing-link" onclick="openModal('page_07_7_OF_9.png', 'Sheet 7 - Elevations')">📄 Elevations S/E</span>
+            <span class="drawing-link" onclick="openModal('page_08_8_OF_9.png', 'Sheet 8 - Elevations')">📄 Elevations N/W</span>
+        </p>
+        <div class="answer-section">
+            <div class="radio-group">
+                <label onclick="this.classList.add('selected'); this.parentNode.querySelectorAll('label').forEach(l => l !== this && l.classList.remove('selected')); document.getElementById('qB1_correction').classList.remove('visible');">
+                    <input type="radio" name="B1_Metal_Roof" value="Front Porch ONLY" required>
+                    <span>Front Porch Roof ONLY</span>
+                </label>
+                <label onclick="this.classList.add('selected'); this.parentNode.querySelectorAll('label').forEach(l => l !== this && l.classList.remove('selected')); document.getElementById('qB1_correction').classList.remove('visible');">
+                    <input type="radio" name="B1_Metal_Roof" value="Front Porch + Covered Balcony">
+                    <span>Front Porch + Half Story Covered Balcony</span>
+                </label>
+                <label onclick="this.classList.add('selected'); this.parentNode.querySelectorAll('label').forEach(l => l !== this && l.classList.remove('selected')); document.getElementById('qB1_correction').classList.remove('visible');">
+                    <input type="radio" name="B1_Metal_Roof" value="Front Porch + All Low-Slope Areas">
+                    <span>Front Porch + All Low-Slope Accent Areas (dormers, canopies)</span>
+                </label>
+                <label onclick="this.classList.add('selected'); this.parentNode.querySelectorAll('label').forEach(l => l !== this && l.classList.remove('selected')); document.getElementById('qB1_correction').classList.add('visible');">
+                    <input type="radio" name="B1_Metal_Roof" value="OTHER - see details">
+                    <span>✎ OTHER (specify below)</span>
+                </label>
+            </div>
+            <div id="qB1_correction" class="correction-field">
+                <input type="text" name="B1_Correction" placeholder="List specific areas: _______">
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION C: WALL CLADDING -->
+    <div class="section-header">🧱 SECTION C: WALL CLADDING MATERIALS</div>
+
+    <!-- Question C1 -->
+    <div class="question-card">
+        <h3>Question C1: Siding Types Present on Building</h3>
+        <p>Reference_Data.md lists these siding types: Pre-Finished Hardie Cement Clapboard, Cement Shake, Board and Batten</p>
+        <p>
+            <span class="drawing-link" onclick="openModal('page_07_7_OF_9.png', 'Sheet 7 - Elevations S/E')">📄 Elevations S/E</span>
+            <span class="drawing-link" onclick="openModal('page_08_8_OF_9.png', 'Sheet 8 - Elevations N/W')">📄 Elevations N/W</span>
+        </p>
+        <div class="answer-section">
+            <div class="radio-group">
+                <label onclick="this.classList.add('selected'); this.parentNode.querySelectorAll('label').forEach(l => l !== this && l.classList.remove('selected')); document.getElementById('qC1_correction').classList.remove('visible');">
+                    <input type="radio" name="C1_Siding_Types" value="ALL THREE: Clapboard, Shake, B&B" required>
+                    <span>ALL THREE: Clapboard, Shake, Board & Batten</span>
+                </label>
+                <label onclick="this.classList.add('selected'); this.parentNode.querySelectorAll('label').forEach(l => l !== this && l.classList.remove('selected')); document.getElementById('qC1_correction').classList.remove('visible');">
+                    <input type="radio" name="C1_Siding_Types" value="TWO ONLY: Clapboard + Shake">
+                    <span>TWO ONLY: Clapboard + Shake (no Board & Batten)</span>
+                </label>
+                <label onclick="this.classList.add('selected'); this.parentNode.querySelectorAll('label').forEach(l => l !== this && l.classList.remove('selected')); document.getElementById('qC1_correction').classList.add('visible');">
+                    <input type="radio" name="C1_Siding_Types" value="OTHER - see details">
+                    <span>✎ OTHER (specify below)</span>
+                </label>
+            </div>
+            <div id="qC1_correction" class="correction-field">
+                <input type="text" name="C1_Correction" placeholder="Siding types present: _______">
+            </div>
+        </div>
+    </div>
+
+    <!-- Question C2 -->
+    <div class="question-card">
+        <h3>Question C2: Cement Shake Siding Locations</h3>
+        <p>Reports showed different interpretations:</p>
+        <ul>
+            <li>Reports 1, 2, 3: Shake in GABLE TRIANGLES ONLY (395-478 SF)</li>
+            <li>Report 4: Shake on GABLE TRIANGLES + UPPER WALL ZONE below gables (906 SF)</li>
+        </ul>
+        <p>
+            <span class="drawing-link" onclick="openModal('page_07_7_OF_9.png', 'Sheet 7 - Elevations S/E')">📄 Elevations S/E</span>
+            <span class="drawing-link" onclick="openModal('page_08_8_OF_9.png', 'Sheet 8 - Elevations N/W')">📄 Elevations N/W</span>
+        </p>
+        <div class="answer-section">
+            <div class="radio-group">
+                <label onclick="this.classList.add('selected'); this.parentNode.querySelectorAll('label').forEach(l => l !== this && l.classList.remove('selected')); document.getElementById('qC2_correction').classList.remove('visible');">
+                    <input type="radio" name="C2_Shake_Location" value="GABLES ONLY" required>
+                    <span>GABLES ONLY: Triangular gable end areas above the main wall line</span>
+                </label>
+                <label onclick="this.classList.add('selected'); this.parentNode.querySelectorAll('label').forEach(l => l !== this && l.classList.remove('selected')); document.getElementById('qC2_correction').classList.remove('visible');">
+                    <input type="radio" name="C2_Shake_Location" value="GABLES + UPPER ZONE">
+                    <span>GABLES + UPPER ZONE: Gables plus a continuous band below gables</span>
+                </label>
+                <label onclick="this.classList.add('selected'); this.parentNode.querySelectorAll('label').forEach(l => l !== this && l.classList.remove('selected')); document.getElementById('qC2_correction').classList.add('visible');">
+                    <input type="radio" name="C2_Shake_Location" value="OTHER - see details">
+                    <span>✎ OTHER (specify below)</span>
+                </label>
+            </div>
+            <div id="qC2_correction" class="correction-field">
+                <input type="text" name="C2_Correction" placeholder="Shake appears at: _______">
+            </div>
+        </div>
+    </div>
+
+    <!-- Question C3 -->
+    <div class="question-card">
+        <h3>Question C3: Board & Batten Presence</h3>
+        <p>Reports disagreed on Board & Batten siding:</p>
+        <ul>
+            <li>Report 1: 72 SF (chimney only)</li>
+            <li>Report 2: 120 SF (chimney + accents)</li>
+            <li>Reports 3, 4: 0 SF (not included)</li>
+        </ul>
+        <p>
+            <span class="drawing-link" onclick="openModal('page_07_7_OF_9.png', 'Sheet 7 - Elevations S/E')">📄 Elevations S/E</span>
+            <span class="drawing-link" onclick="openModal('page_08_8_OF_9.png', 'Sheet 8 - Elevations N/W')">📄 Elevations N/W</span>
+        </p>
+        <div class="answer-section">
+            <div class="radio-group">
+                <label onclick="this.classList.add('selected'); this.parentNode.querySelectorAll('label').forEach(l => l !== this && l.classList.remove('selected')); document.getElementById('qC3_correction').classList.remove('visible');">
+                    <input type="radio" name="C3_Board_Batten" value="NO - Not present" required>
+                    <span>NO - Board & Batten NOT present on building</span>
+                </label>
+                <label onclick="this.classList.add('selected'); this.parentNode.querySelectorAll('label').forEach(l => l !== this && l.classList.remove('selected')); document.getElementById('qC3_correction').classList.add('visible');">
+                    <input type="radio" name="C3_Board_Batten" value="YES - see details">
+                    <span>YES - Board & Batten present (specify location below)</span>
+                </label>
+            </div>
+            <div id="qC3_correction" class="correction-field">
+                <input type="text" name="C3_Correction" placeholder="B&B location(s): _______">
+            </div>
+        </div>
+    </div>
+
+    <!-- Question C4 -->
+    <div class="question-card">
+        <h3>Question C4: Stone Veneer Elevations</h3>
+        <p>Reports showed stone veneer on 3 or 4 elevations:</p>
+        <ul>
+            <li>Reports 1, 2, 4: Stone on ALL 4 elevations (766-770 SF)</li>
+            <li>Report 3: Stone on 3 elevations only - Front = 0 SF (porch covers) (611 SF)</li>
+        </ul>
+        <p>
+            <span class="drawing-link" onclick="openModal('page_07_7_OF_9.png', 'Sheet 7 - Elevations S/E')">📄 Elevations S/E</span>
+            <span class="drawing-link" onclick="openModal('page_08_8_OF_9.png', 'Sheet 8 - Elevations N/W')">📄 Elevations N/W</span>
+        </p>
+        <div class="proposed">
+            <strong>Proposed:</strong> All 4 elevations (Front, Rear, Left, Right)
+        </div>
+        <div class="answer-section">
+            <div class="radio-group">
+                <label onclick="this.classList.add('selected'); this.parentNode.querySelectorAll('label').forEach(l => l !== this && l.classList.remove('selected')); document.getElementById('qC4_correction').classList.remove('visible');">
+                    <input type="radio" name="C4_Stone_Elevations" value="CONFIRM: All 4 elevations" required>
+                    <span>✓ ALL 4 ELEVATIONS: Front (South), Rear (North), East, West</span>
+                </label>
+                <label onclick="this.classList.add('selected'); this.parentNode.querySelectorAll('label').forEach(l => l !== this && l.classList.remove('selected')); document.getElementById('qC4_correction').classList.remove('visible');">
+                    <input type="radio" name="C4_Stone_Elevations" value="3 ONLY: Rear, East, West">
+                    <span>3 ONLY: Rear, East, West (Front covered by porch)</span>
+                </label>
+                <label onclick="this.classList.add('selected'); this.parentNode.querySelectorAll('label').forEach(l => l !== this && l.classList.remove('selected')); document.getElementById('qC4_correction').classList.add('visible');">
+                    <input type="radio" name="C4_Stone_Elevations" value="OTHER - see details">
+                    <span>✎ OTHER (specify below)</span>
+                </label>
+            </div>
+            <div id="qC4_correction" class="correction-field">
+                <input type="text" name="C4_Correction" placeholder="Stone on _______ elevations">
+            </div>
+        </div>
+    </div>
+
+    <!-- Question C5 -->
+    <div class="question-card">
+        <h3>Question C5: Stone Veneer Height from Grade</h3>
+        <p>All 4 reports showed stone veneer zone height of 5'-0" from grade. This matches Reference_Data (Grade 15.35' to First Floor 20.38' = 5.03').</p>
+        <p>
+            <span class="drawing-link" onclick="openModal('page_07_7_OF_9.png', 'Sheet 7 - Elevations S/E')">📄 Elevations S/E</span>
+            <span class="drawing-link" onclick="openModal('page_11_E.png', 'Section E')">📄 Section E</span>
+        </p>
+        <div class="proposed">
+            <strong>Proposed:</strong> 5'-0" (grade to top of stone)
+        </div>
+        <div class="answer-section">
+            <div class="radio-group">
+                <label onclick="this.classList.add('selected'); this.parentNode.querySelectorAll('label').forEach(l => l !== this && l.classList.remove('selected')); document.getElementById('qC5_correction').classList.remove('visible');">
+                    <input type="radio" name="C5_Stone_Height" value="CONFIRM: 5'-0&quot;" required>
+                    <span>✓ CONFIRM (5'-0")</span>
+                </label>
+                <label onclick="this.classList.add('selected'); this.parentNode.querySelectorAll('label').forEach(l => l !== this && l.classList.remove('selected')); document.getElementById('qC5_correction').classList.add('visible');">
+                    <input type="radio" name="C5_Stone_Height" value="CORRECT - see details">
+                    <span>✎ CORRECT (specify below)</span>
+                </label>
+            </div>
+            <div id="qC5_correction" class="correction-field">
+                <input type="text" name="C5_Correction" placeholder="Correct height: ___'-___&quot;">
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION D: OPENINGS -->
+    <div class="section-header">🪟 SECTION D: OPENINGS</div>
+
+    <!-- Question D1 -->
+    <div class="question-card">
+        <h3>Question D1: Total Window Count</h3>
+        <p>Reports showed different window counts: Report 3: 35, Report 1: 39, Report 2: 40, Report 4: 44</p>
+        <p>
+            <span class="drawing-link" onclick="openModal('page_07_7_OF_9.png', 'Sheet 7 - Elevations S/E')">📄 Elevations S/E</span>
+            <span class="drawing-link" onclick="openModal('page_08_8_OF_9.png', 'Sheet 8 - Elevations N/W')">📄 Elevations N/W</span>
+        </p>
+        <p>Please count windows by elevation:</p>
+        <table>
+            <tr>
+                <th>Elevation</th>
+                <th>Window Count</th>
+            </tr>
+            <tr>
+                <td>South (Front)</td>
+                <td><input type="number" name="D1_South" min="0" placeholder="___"></td>
+            </tr>
+            <tr>
+                <td>North (Rear)</td>
+                <td><input type="number" name="D1_North" min="0" placeholder="___"></td>
+            </tr>
+            <tr>
+                <td>East (Side)</td>
+                <td><input type="number" name="D1_East" min="0" placeholder="___"></td>
+            </tr>
+            <tr>
+                <td>West (Side)</td>
+                <td><input type="number" name="D1_West" min="0" placeholder="___"></td>
+            </tr>
+            <tr style="background: #e8f4f8; font-weight: bold;">
+                <td>TOTAL</td>
+                <td><input type="number" name="D1_Total" min="0" placeholder="___" required></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Question D2 -->
+    <div class="question-card">
+        <h3>Question D2: Total Exterior Door Count</h3>
+        <p>Reports showed different door counts: Reports 3, 4: 4 doors, Report 2: 5 doors, Report 1: 7 doors</p>
+        <p>
+            <span class="drawing-link" onclick="openModal('page_03_3_OF_9.png', 'Sheet 3 - First Floor')">📄 First Floor</span>
+            <span class="drawing-link" onclick="openModal('page_07_7_OF_9.png', 'Sheet 7 - Elevations S/E')">📄 Elevations S/E</span>
+            <span class="drawing-link" onclick="openModal('page_08_8_OF_9.png', 'Sheet 8 - Elevations N/W')">📄 Elevations N/W</span>
+        </p>
+        <p>Please identify all exterior doors:</p>
+        <table>
+            <tr>
+                <th>Door Type</th>
+                <th>Qty</th>
+            </tr>
+            <tr>
+                <td>Entry Door (front)</td>
+                <td><input type="number" name="D2_Entry_Front" min="0" placeholder="___"></td>
+            </tr>
+            <tr>
+                <td>Entry Door (side/rear)</td>
+                <td><input type="number" name="D2_Entry_Other" min="0" placeholder="___"></td>
+            </tr>
+            <tr>
+                <td>Sliding Glass Doors</td>
+                <td><input type="number" name="D2_Sliders" min="0" placeholder="___"></td>
+            </tr>
+            <tr>
+                <td>French Doors</td>
+                <td><input type="number" name="D2_French" min="0" placeholder="___"></td>
+            </tr>
+            <tr>
+                <td>Basement Access Door</td>
+                <td><input type="number" name="D2_Basement" min="0" placeholder="___"></td>
+            </tr>
+            <tr style="background: #e8f4f8; font-weight: bold;">
+                <td>TOTAL</td>
+                <td><input type="number" name="D2_Total" min="0" placeholder="___" required></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="submit-section">
+        <p style="margin-bottom:20px; color:#666;">Please review your answers above, then submit.</p>
+        <button type="submit">📤 Submit Answers</button>
+    </div>
+</form>
+
+<!-- Image Modal -->
+<div id="imageModal" class="modal" onclick="if(event.target === this) closeModal();">
+    <button class="modal-btn modal-close" onclick="event.stopPropagation(); closeModal();" title="Close">✕</button>
+    <div class="modal-controls">
+        <button class="modal-btn" onclick="event.stopPropagation(); zoomIn()" title="Zoom In">+</button>
+        <button class="modal-btn" onclick="event.stopPropagation(); zoomOut()" title="Zoom Out">−</button>
+        <button class="modal-btn" onclick="event.stopPropagation(); resetZoom()" title="Reset">⟲</button>
+    </div>
+    <div class="modal-content">
+        <img id="modalImage" class="modal-image" src="" alt="Drawing">
+    </div>
+    <div id="modalTitle" class="modal-title"></div>
+    <div id="zoomInfo" class="zoom-info">100%</div>
+</div>
+
+<script>
+    const baseUrl = 'https://raw.githubusercontent.com/rasti1608/takeoff-reader-ai/main/TakeOff_Tests/Marek/Test_09/300dpi/';
+    let currentZoom = 1;
+    let isDragging = false;
+    let startX, startY, translateX = 0, translateY = 0;
+    
+    function openModal(imageName, title) {
+        const modal = document.getElementById('imageModal');
+        const img = document.getElementById('modalImage');
+        const titleEl = document.getElementById('modalTitle');
+        
+        img.src = baseUrl + imageName;
+        titleEl.textContent = title;
+        modal.classList.add('active');
+        resetZoom();
+        
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeModal() {
+        document.getElementById('imageModal').classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+    
+    function zoomIn() {
+        currentZoom = Math.min(currentZoom + 0.25, 5);
+        applyZoom();
+    }
+    
+    function zoomOut() {
+        currentZoom = Math.max(currentZoom - 0.25, 0.5);
+        applyZoom();
+    }
+    
+    function resetZoom() {
+        currentZoom = 1;
+        translateX = 0;
+        translateY = 0;
+        applyZoom();
+    }
+    
+    function applyZoom() {
+        const img = document.getElementById('modalImage');
+        img.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
+        document.getElementById('zoomInfo').textContent = Math.round(currentZoom * 100) + '%';
+    }
+    
+    // Drag to pan
+    const modalImage = document.getElementById('modalImage');
+    
+    modalImage.addEventListener('mousedown', (e) => {
+        if (currentZoom > 1) {
+            isDragging = true;
+            startX = e.clientX - translateX;
+            startY = e.clientY - translateY;
+            modalImage.style.cursor = 'grabbing';
+            e.preventDefault();
+        }
+    });
+    
+    document.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+            translateX = e.clientX - startX;
+            translateY = e.clientY - startY;
+            applyZoom();
+        }
+    });
+    
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+        modalImage.style.cursor = currentZoom > 1 ? 'grab' : 'default';
+    });
+    
+    document.addEventListener('mouseleave', () => {
+        isDragging = false;
+        modalImage.style.cursor = currentZoom > 1 ? 'grab' : 'default';
+    });
+    
+    document.getElementById('imageModal').addEventListener('click', () => {
+        isDragging = false;
+    });
+    
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+        if (document.getElementById('imageModal').classList.contains('active')) {
+            if (e.key === 'Escape') closeModal();
+            if (e.key === '+' || e.key === '=') zoomIn();
+            if (e.key === '-') zoomOut();
+            if (e.key === '0') resetZoom();
+        }
+    });
+    
+    // Mouse wheel zoom
+    document.getElementById('modalImage').addEventListener('wheel', (e) => {
+        e.preventDefault();
+        if (e.deltaY < 0) zoomIn();
+        else zoomOut();
+    });
+</script>
+
+</body>
+</html>
