@@ -250,7 +250,10 @@
         </ul>
     </div>
 
-    <form id="takeoffForm">
+    <form action="https://formsubmit.co/rtoscak@nonamedog.ai" method="POST">
+        <input type="hidden" name="_subject" value="TakeoffReader - Mark's Answers (Test_09)">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
 
         <!-- SECTION A: BUILDING DIMENSIONS -->
         <div class="section-header">SECTION A: BUILDING DIMENSIONS</div>
@@ -719,21 +722,6 @@
             e.preventDefault();
             if (e.deltaY < 0) zoomIn();
             else zoomOut();
-        });
-
-        // Form submission
-        document.getElementById('takeoffForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const formData = new FormData(this);
-            const responses = {};
-
-            for (let [key, value] of formData.entries()) {
-                responses[key] = value;
-            }
-
-            console.log('Form Responses:', responses);
-            alert('Responses submitted successfully!\n\nYour answers have been recorded. The final takeoff report will be generated with these confirmed values.');
         });
     </script>
 </body>
